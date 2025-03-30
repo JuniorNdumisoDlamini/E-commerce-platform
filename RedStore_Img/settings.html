@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RedStore Ecom Website - Settings</title>
+    <!-- Do not modify navbar styles (from style.css) -->
+    <link rel="stylesheet" href="style.css" />
+    <!-- Settings page styles -->
+    <link rel="stylesheet" href="settings.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,600;0,900;1,700&family=Rubik+Doodle+Shadow&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://kit.fontawesome.com/7c10da4bc0.js" crossorigin="anonymous"></script>
+  </head>
+  <body class="bodystuff">
+    <!-- Header section (DO NOT TOUCH) -->
+    <div class="header">
+      <div class="container">
+        <div class="navbar">
+          <div class="logo">
+            <a href="store.html"><img src="images/logo.png" alt="logo image" width="125px" /></a>
+          </div>
+          <nav>
+            <ul id="MenuItems">
+              <li><a href="store.html">Home</a></li>
+              <li><a href="product.html">Products</a></li>
+              <li><a href="about.html">About</a></li>
+              <li><a href="contact.html">Contact</a></li>
+              <li><a href="account.html">Account</a></li>
+              <li><a href="settings.html">
+                <i class="fa-solid fa-gear"></i></a></li>
+            </ul>
+          </nav>
+          <a href="cart.html"><img src="images/cart.png" alt="cart icon" width="30px" height="30px" /></a>
+          <div class="user-status">
+            <ul>
+              <li id="user-icon">
+                <!-- Default icon -->
+                <i class="fa fa-user" aria-hidden="true"></i>
+              </li>
+              <li id="settings-icon" style="display:none;">
+                <!-- Settings icon visible after login -->
+                <a href="settings.html"><i class="fa fa-cog" aria-hidden="true"></i></a>
+              </li>
+              <li id="logout-button" style="display:none;">
+                <!-- Logout button -->
+                <a href="javascript:void(0)" onclick="handleLogout()">Logout</a>
+              </li>
+            </ul>
+          </div>
+          <img src="images/menu.png" class="menu-icon" onclick="menutoggle()" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Settings Card Container -->
+    <div class="settings-container card">
+      <!-- Main Header with Neon Underline -->
+      <h1>
+        <i class="fa fa-cogs"></i> Settings
+      </h1>
+      <form id="settingsForm">
+        <!-- Profile Settings Section -->
+        <section class="profile-section">
+          <div class="section-header">
+            <i class="fa fa-user"></i>
+            <h2>Profile Details</h2>
+          </div>
+          <div class="field-group">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" placeholder="Your display name" />
+          </div>
+          <div class="field-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Your email address" />
+          </div>
+          <div class="field-group">
+            <label for="password">New Password:</label>
+            <input type="password" id="password" name="password" placeholder="Leave blank to keep current" />
+          </div>
+        </section>
+        <!-- Notification Settings Section (optional) -->
+        <section class="notification-section">
+          <div class="section-header">
+            <i class="fa fa-bell"></i>
+            <h2>Notifications</h2>
+          </div>
+          <div class="checkbox-group">
+            <label>
+              <input type="checkbox" id="emailNotifications" name="notifications" />
+              Email Notifications
+            </label>
+            <label>
+              <input type="checkbox" id="smsNotifications" name="notifications" />
+              SMS Notifications
+            </label>
+          </div>
+        </section>
+        <!-- Save Changes Button (Primary Action) -->
+        <div class="button-group">
+          <button type="submit" class="save-button"><i class="fa fa-save"></i> Save Changes</button>
+        </div>
+      </form>
+      <!-- Action Buttons Group: Delete & Logout -->
+      <div class="action-buttons">
+        <button id="deleteAccount" type="button" class="danger-btn" onclick="handleDeleteAccount()">
+          <i class="fa fa-trash"></i> Delete Account
+        </button>
+        <button id="logoutBtn" onclick="handleLogout()">
+          <i class="fa fa-sign-out-alt"></i> Logout
+        </button>
+      </div>
+    </div>
+
+    <!-- Settings Page Script with Firebase Authentication -->
+    <script type="module">
+      // Import Firebase functions from the modular SDK
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-analytics.js";
+      import {
+        getAuth,
+        onAuthStateChanged,
+        updateProfile,
+        updateEmail,
+        updatePassword,
+        signOut,
+        deleteUser,
+      } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
+
+      // Your Firebase configuration (use your actual config details)
+      const firebaseConfig = {
+        apiKey: "AIzaSyC1cO0beaKetDg-Dg9AsnVng_rNfIPX-3U",
+        authDomain: "eccom-97289.firebaseapp.com",
+        projectId: "eccom-97289",
+        storageBucket: "eccom-97289.firebasestorage.app",
+        messagingSenderId: "377545136817",
+        appId: "1:377545136817:web:45395956ce1c2314242090",
+        measurementId: "G-Q6BD124R5X"
+      };
+
+      // Initialize Firebase
+      const appFirebase = initializeApp(firebaseConfig);
+      const analytics = getAnalytics(appFirebase);
+      const auth = getAuth(appFirebase);
+
+      // Fill the form with the current user's details when available
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          // If the user is logged in, fill in details
+          document.getElementById("username").value = user.displayName || "";
+          document.getElementById("email").value = user.email || "";
+          // Optionally, you could set notification checkboxes if stored elsewhere
+          // Show Logout button in your navbar if desired
+          const logoutBtn = document.getElementById("logoutBtn");
+          if (logoutBtn) logoutBtn.style.display = "block";
+        } else {
+          // If not logged in, redirect to the login/account page
+          window.location.href = "account.html";
+        }
+      });
+
+      // Handle settings form submission (update profile, email, and password)
+      document.getElementById("settingsForm").addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        const user = auth.currentUser;
+        if (!user) {
+          alert("No user is signed in!");
+          return;
+        }
+
+        const newDisplayName = document.getElementById("username").value;
+        const newEmail = document.getElementById("email").value;
+        const newPassword = document.getElementById("password").value;
+        const emailNotifications = document.getElementById("emailNotifications").checked;
+        const smsNotifications = document.getElementById("smsNotifications").checked;
+
+        try {
+          // Update display name if changed
+          if (newDisplayName && newDisplayName !== user.displayName) {
+            await updateProfile(user, { displayName: newDisplayName });
+          }
+          // Update email if changed
+          if (newEmail && newEmail !== user.email) {
+            await updateEmail(user, newEmail);
+          }
+          // Update password if a new one was provided
+          if (newPassword) {
+            await updatePassword(user, newPassword);
+          }
+          // Optionally update notifications in your database here
+          alert("Changes saved successfully!");
+        } catch (error) {
+          console.error("Error updating profile:", error);
+          alert("Update failed: " + error.message);
+        }
+      });
+
+      // Logout function using Firebase Authentication
+      window.handleLogout = function handleLogout() {
+        signOut(auth)
+          .then(() => {
+            alert("Logged out successfully.");
+            window.location.href = "account.html";
+          })
+          .catch((error) => {
+            console.error("Error during logout:", error);
+            alert("Logout failed: " + error.message);
+          });
+      };
+
+      // Delete Account function (be cautious—this permanently deletes the user)
+      window.handleDeleteAccount = function handleDeleteAccount() {
+        if (confirm("Are you sure you want to delete your account? This action cannot be undone.")) {
+          const user = auth.currentUser;
+          if (user) {
+            deleteUser(user)
+              .then(() => {
+                alert("Your account has been deleted.");
+                window.location.href = "account.html";
+              })
+              .catch((error) => {
+                console.error("Error deleting account:", error);
+                alert("Account deletion failed: " + error.message);
+              });
+          }
+        }
+      };
+
+      // Toggle the mobile menu (reuse from previous code)
+      const MenuItems = document.getElementById("MenuItems");
+      MenuItems.style.maxHeight = "0px";
+      window.menutoggle = function menutoggle() {
+        MenuItems.style.maxHeight = MenuItems.style.maxHeight === "0px" ? "200px" : "0px";
+      };
+    </script>
+  </body>
+</html>

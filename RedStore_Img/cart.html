@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cart ||| RedStore Ecom Website</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,600;0,900;1,700&family=Rubik+Doodle+Shadow&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/7c10da4bc0.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <!-- header section-->
+  <div class="container">
+    <div class="navbar">
+      <div class="logo">
+        <a href="store.html"><img src="images/logo.png" alt="logo image" width="125px"></a>
+      </div>
+      <nav>
+        <ul id="MenuItems">
+          <li><a href="store.html">Home</a></li>
+          <li><a href="product.html">Products</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="">Contact</a></li>
+          <li><a href="account.html">Account</a></li>
+        </ul>
+      </nav>
+      <img src="images/cart.png" alt="cart icon" width="30px" height="30px">
+      <img src="images/menu.png" class="menu-icon" onclick="menutoggle()">
+    </div>
+  </div>
+
+  <!-----------------cart item details-------------------->
+  <div class="small-container cart-page">
+    <table>
+      <tr>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>SubTotal</th>
+      </tr>
+      <!-- Product rows will be dynamically added here -->
+    </table>
+
+    
+
+    <div class="total-price">
+      <table>
+        <tr>
+          <td>Subtotal</td>
+          <td id="subtotal">$0.00</td>
+        </tr>
+        <tr>
+          <td>Tax</td>
+          <td id="tax">$0.00</td>
+        </tr>
+        <tr>
+          <td>Total</td>
+          <td id="total">$0.00</td>
+        </tr>
+
+        <!-- Currency Converter Row -->
+      <tr>
+        <td colspan="2" class="currency-row">
+          <div class="currency-converter">
+            <label for="currency">Choose Currency:</label>
+            <select id="currency">
+              <option value="USD" data-rate="1" selected>USD</option>
+              <option value="EUR" data-rate="0.91">EUR</option>
+              <option value="GBP" data-rate="0.78">GBP</option>
+              <option value="ZAR" data-rate="18.0">ZAR</option>
+            </select>
+          </div>
+        </td>
+      </tr>
+      </table>
+    </div>
+
+    <button class="checkout-button" onclick="proceedToCheckout()">Proceed to Payment</button>
+  </div>
+<!-- Currency Converter Section -->
+
+  <!-- footer section -->
+  <div class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="footer-col-1">
+          <h3>Download Our App</h3>
+          <p>Download App for Andriod and IOs for mobile.</p>
+          <div class="app-logo">
+            <img src="images/play-store.png" alt="play store logo">
+            <img src="images/app-store.png" alt="app store logo">
+          </div>
+        </div>
+        <div class="footer-col-2">
+          <img src="images/logo-white.png" alt="company logo">
+          <p>Our Purpose Is To Sustainably Make The Pleasure and Benefits of Sports Accessible to the Many.</p>
+        </div>
+        <div class="footer-col-3">
+          <h3>Useful Links</h3>
+          <ul>
+            <li>Coupons</li>
+            <li>Blog Post</li>
+            <li>Return Policy</li>
+            <li>Join Affiliate</li>
+          </ul>
+        </div>
+        <div class="footer-col-4">
+          <h3>Follow Us On:</h3>
+          <ul>
+            <li>FaceBook</li>
+            <li>Twitter</li>
+            <li>Instagram</li>
+            <li>YouTube</li>
+          </ul>
+        </div>
+      </div>
+      <hr>
+      <p class="copyright"> Copyright 2023- @Ndu studios </p>
+    </div>
+  </div>
+
+  <!-- JavaScript for toggle menu -->
+  <script>
+    var MenuItems = document.getElementById("MenuItems");
+    MenuItems.style.maxHeight = "0px";
+
+    function menutoggle() {
+      if (MenuItems.style.maxHeight == "0px") {
+        MenuItems.style.maxHeight = "200px";
+      } else {
+        MenuItems.style.maxHeight = "0px";
+      }
+    }
+  </script>
+
+  <!-- JavaScript for shopping cart -->
+  <script>
+    function proceedToCheckout() {
+      window.location.href = "payment.html";
+    }
+
+    // Retrieve products from localStorage
+    let products;
+    try {
+      products = JSON.parse(localStorage.getItem("products")) || [];
+    } catch (e) {
+      console.error("Error parsing products from localStorage", e);
+      products = [];
+    }
+
+    const table = document.querySelector(".cart-page table");
+
+    // Function to add product to the page
+    function addProduct(product, index) {
+      const row = table.insertRow(-1);
+
+      const cell1 = row.insertCell(0);
+      const cell2 = row.insertCell(1);
+      const cell3 = row.insertCell(2);
+
+      cell1.innerHTML = `<div class="cart-info">
+          <img src="${product.image}" alt="cart image">
+          <div>
+              <p>${product.name}</p>
+              <small>Price: $${product.price.toFixed(2)}</small>
+              <br>
+              <a href="#" class="remove">Remove</a>
+          </div>
+      </div>`;
+      cell2.innerHTML = `<input type="number" value="${product.quantity}" class="quantity">`;
+      cell3.textContent = `$${(product.price * product.quantity).toFixed(2)}`;
+
+      // Attach event handlers
+      cell1.querySelector(".remove").addEventListener("click", () => removeProduct(index));
+      cell2.querySelector(".quantity").addEventListener("change", (e) => updateQuantity(index, e.target.value));
+    }
+
+    // Function to update quantity
+    function updateQuantity(index, quantity) {
+      products[index].quantity = quantity;
+      updateLocalStorage();
+      renderProducts(); // Re-render products
+    }
+
+    // Function to remove product
+    function removeProduct(index) {
+      products.splice(index, 1);
+      updateLocalStorage();
+      renderProducts(); // Re-render products
+    }
+
+    // Helper function to return a currency symbol based on code
+    function getCurrencySymbol(currencyCode) {
+      switch(currencyCode) {
+        case "USD": return "$";
+        case "EUR": return "€";
+        case "GBP": return "£";
+        case "ZAR": return "R";
+        default: return "$";
+      }
+    }
+
+    // Function to calculate subtotal, tax, and total with conversion
+    function calculateTotals() {
+      const subtotalUSD = products.reduce((total, product) => total + product.price * product.quantity, 0);
+      const taxUSD = subtotalUSD * 0.15; // Assuming 15% tax
+      const totalUSD = subtotalUSD + taxUSD;
+
+      const currencySelect = document.getElementById("currency");
+      const selectedCurrency = currencySelect.value;
+      const conversionRate = parseFloat(currencySelect.selectedOptions[0].dataset.rate);
+      const currencySymbol = getCurrencySymbol(selectedCurrency);
+
+      const subtotal = subtotalUSD * conversionRate;
+      const tax = taxUSD * conversionRate;
+      const total = totalUSD * conversionRate;
+
+      document.getElementById("subtotal").textContent = `${currencySymbol}${subtotal.toFixed(2)}`;
+      document.getElementById("tax").textContent = `${currencySymbol}${tax.toFixed(2)}`;
+      document.getElementById("total").textContent = `${currencySymbol}${total.toFixed(2)}`;
+    }
+
+    // Function to update localStorage and totals
+    function updateLocalStorage() {
+      localStorage.setItem("products", JSON.stringify(products));
+      calculateTotals(); // Update totals when products change
+    }
+
+    // Function to render all products
+    function renderProducts() {
+      // Clear the table except for the header row
+      while (table.rows.length > 1) {
+        table.deleteRow(1);
+      }
+      // Add products to the table
+      for (let i = 0; i < products.length; i++) {
+        addProduct(products[i], i);
+      }
+      calculateTotals();
+    }
+
+    // Listen for changes to the currency converter
+    document.getElementById("currency").addEventListener("change", calculateTotals);
+
+    // On page load, render products and calculate totals
+    window.onload = function () {
+      renderProducts();
+      calculateTotals();
+    };
+  </script>
+</body>
+</html>

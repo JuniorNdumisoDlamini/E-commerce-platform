@@ -1,0 +1,373 @@
+!<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> All Products RedStore Ecom Website</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,600;0,900;1,700&family=Rubik+Doodle+Shadow&display=swap" rel="stylesheet">
+<script src="https://kit.fontawesome.com/7c10da4bc0.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <!-- header section-->
+    <div class="container">
+    <div class="navbar">
+        <div class="logo">
+            <a href="store.html"><img src="images/logo.png" alt="logo image" width="125px"></a>
+        </div>
+        <nav>
+            <ul id="MenuItems">
+                <li><a href="store.html">Home</a></li>
+                <li><a href="product.html">Products</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="account.html">Account</a></li>
+            </ul>
+        </nav>
+       
+        <a href="cart.html"><img src="images/cart.png" alt="cart icon" width="30px" height="30px"></a>
+        <img src="images/menu.png" class="menu-icon" onclick="menutoggle()">
+    </div>
+
+</div>
+
+<div class="small-container">
+
+    <div class="row row-2">
+        <h2>All Products</h2>
+        <select id="sortCriteria">
+            <option value="default">Default Sorting</option>
+            <option value="price">Sort by Price</option>
+            <option value="popularity">Sort by Popularity</option>
+            <option value="rating">Sort by Rating</option>
+            <option value="sales">Sort by Sales</option>
+        </select>
+    </div>
+
+    <div id="productContainer" class="row">
+        <div class="col-4"  data-price="50.00" data-popularity="120" data-rating="4.5" data-sales="200">
+            <img src="images/product-1.jpg" alt="">
+            <h4>Red Printed T-shirt</h4>
+            <div class="rating">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+            </div>
+            <p>$50.00</p>
+            <button onclick="addToCart('Red Printed T-shirt', 50.00, 'images/product-1.jpg')"
+             class="btn">Add to Cart</button>
+        </div>
+        <div class="col-4"  data-price="99.99" data-popularity="400" data-rating="3.5" data-sales="2450">
+            <img src="images/product-2.jpg" alt="">
+            <h4>Black Hyper X Running Shoe</h4>
+            <div class="rating">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-regular fa-star-half-stroke"></i>
+              
+
+            </div>
+            <p>$99.99</p>
+            <button onclick="addToCart('Black Hyper X Running Shoe', 99.99, 'images/product-2.jpg')"
+            class="btn">Add to Cart</button>
+        </div>
+        <div class="col-4"  data-price="119.99" data-popularity="12023" data-rating="4.1" data-sales="20340">
+            <img src="images/product-3.jpg" alt="">
+            <h4>Slim Gray Joggers</h4>
+            <div class="rating">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-regular fa-star-half-stroke"></i>
+
+            </div>
+            <p>$119.99</p>
+            <button onclick="addToCart('Slim Gray Joggers', 119.99, 'images/product-3.jpg')"
+            class="btn">Add to Cart</button>
+        </div>
+        <div class="col-4"  data-price="169.99"data-popularity="8765" data-rating="4.7" data-sales="3453">
+            <img src="images/product-4.jpg" alt="">
+            <h4>Blue Button-up Polo shirt</h4>
+            <div class="rating">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+
+            </div>
+            <p>$169.99</p>
+            <button onclick="addToCart('Blue Button-up Polo shirt', 169.99, 'images/product-4.jpg')"
+            class="btn">Add to Cart</button>
+        </div>
+  
+
+<!-- latest products-->
+    
+    <div class="row">
+        <div class="col-4"  data-price="199.99" data-popularity="176" data-rating="4.5" data-sales="2345">
+            <img src="images/product-5.jpg" alt="">
+            <h4>Grey W/ Metalic Hi-Tops</h4>
+            <div class="rating">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+            </div>
+            <p>$199.99</p>
+            <button onclick="addToCart('Grey W/ Metalic Hi-Tops', 199.99, 'images/product-5.jpg')"
+            class="btn">Add to Cart</button>
+        </div>
+        <div class="col-4"  data-price="95.99" data-popularity="1200" data-rating="3.55" data-sales="3432">
+            <img src="images/product-6.jpg" alt="">
+            <h4>Black Puma Shirt</h4>
+            <div class="rating">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-regular fa-star-half-stroke"></i>
+                <i class="fa-regular fa-star"></i>
+
+            </div>
+            <p>$95.99</p>
+            <button onclick="addToCart('Black Puma Shirt', 95.99, 'images/product-6.jpg')"
+            class="btn">Add to Cart</button>
+        </div>
+        <div class="col-4"  data-price="14.99" data-popularity="3432" data-rating="4.3" data-sales="200576">
+            <img src="images/product-7.jpg" alt="">
+            <h4>Hyper X Ankle Socks</h4>
+            <div class="rating">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-regular fa-star-half-stroke"></i>
+
+            </div>
+            <p>$14.99</p>
+            <button onclick="addToCart('Hyper X Ankle Socks', 14.99, 'images/product-7.jpg')"
+            class="btn">Add to Cart</button>
+        </div>
+        <div class="col-4"  data-price="299.99" data-popularity="60" data-rating="4.5" data-sales="300">
+            <img src="images/product-8.jpg" alt="">
+            <h4>Metalic Black Fossil Watch</h4>
+            <div class="rating">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+
+            </div>
+            <p>$299.99</p>
+            <button onclick="addToCart('Metalic Black Fossil Watch', 299.99, 'images/product-8.jpg')"
+            class="btn">Add to Cart</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4"  data-price="99.99" data-popularity="12000" data-rating="4.5" data-sales="20000">
+            <img src="images/product-9.jpg" alt="">
+            <h4>Black Watch W/ Gold Dial</h4>
+            <div class="rating">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+            </div>
+            <p>$99.99</p>
+            <button onclick="addToCart('Black Watch W/ Gold Dial', 99.99, 'images/product-9.jpg')"
+            class="btn">Add to Cart</button>
+        </div>
+        <div class="col-4"  data-price="289.99" data-popularity="400" data-rating="5.0" data-sales="2120">
+            <img src="images/product-10.jpg" alt="">
+            <h4>Black & Red Hyper X Shoe</h4>
+            <div class="rating">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+
+            </div>
+            <p>$289.99</p>
+            <button onclick="addToCart('Black & Red Hyper X Shoe', 289.99, 'images/product-10.jpg')"
+            class="btn">Add to Cart</button>
+        </div>
+        <div class="col-4"  data-price="34.99" data-popularity="6000" data-rating="4.5" data-sales="34532">
+            <img src="images/product-11.jpg" alt="">
+            <h4>Grey Low Cut Running Shoe</h4>
+            <div class="rating">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-regular fa-star-half-stroke"></i>
+
+            </div>
+            <p>$34.99</p>
+            <button onclick="addToCart('Grey Low Cut Running Shoe', 34.99, 'images/product-11.jpg')"
+            class="btn">Add to Cart</button>
+        </div>
+        <div class="col-4"  data-price="120.00" data-popularity="160" data-rating="4.0" data-sales="1254">
+            <img src="images/product-12.jpg" alt="">
+            <h4>Black Draw-String Joggers</h4>
+            <div class="rating">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+               
+
+            </div>
+            <p>$120.00</p>
+            <button onclick="addToCart('Black Draw-String Joggers', 120.00, 'images/product-12.jpg')"
+            class="btn">Add to Cart</button>
+        </div>
+        <div class="notification">
+            Item added to cart successfully!
+        </div>
+    </div> 
+</div>
+    <div class="page-btn">
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+        <span>&#8594;</span>
+    </div>
+</div>
+
+<!-- brands widget section-->
+
+<!-- footer section -->
+<div class="footer">
+    <div class="container">
+<div class="row">
+    <div class="footer-col-1">
+        <h3>Download Our App</h3>
+        <p>Download App for Andriod and IOs for mobile.</p>
+        <div class="app-logo">
+            <img src="images/play-store.png" alt="play store logo">
+            <img src="images/app-store.png" alt="app store logo">
+
+        </div>
+    </div>
+    <div class="footer-col-2">
+        <img src="images/logo-white.png" alt="company logo">
+        <p>Our Purpose Is To Sustainably Make The Pleasure and 
+            Benefits of Sports Accessible to the Many.</p>
+    </div>
+    <div class="footer-col-3">
+        <h3>Useful Links</h3>
+       <ul>
+        <li>Coupons</li>
+        <li>Blog Post</li>
+        <li>Return Policy</li>
+        <li>Join Affiliate</li>
+       </ul>
+    </div>
+    <div class="footer-col-4">
+        <h3>Follow Us On:</h3>
+       <ul>
+        <li>FaceBook</li>
+        <li>Twitter</li>
+        <li>Instagram</li>
+        <li>YouTube</li>
+       </ul>
+    </div>
+</div>
+<hr>
+<p class="copyright"> Copyright 2023- @Ndu studios </p>
+    </div>
+</div>
+
+<div id="notification" class="notification">
+    Item added to cart successfully!
+</div>
+
+<!-- javascript for toggle menu-->
+<script>
+ 
+    var MenuItems = document.getElementById("MenuItems");
+    MenuItems.style.maxHeight = "0px";
+
+    function menutoggle() {
+        if (MenuItems.style.maxHeight === "0px") {
+            MenuItems.style.maxHeight = "200px";
+        } else {
+            MenuItems.style.maxHeight = "0px";
+        }
+    }
+
+</script>
+
+<!-- js for adding products to menu-->
+<!-- JavaScript for adding products to the cart -->
+<script>
+    // Function to add product to cart
+    function addToCart(name, price, image) {
+        var product = { name: name, price: price, quantity: 1, image: image };
+
+        // Get existing products from localStorage
+        var existingProducts = JSON.parse(localStorage.getItem("products")) || [];
+
+        // Check if the product is already in the cart
+        var existingProductIndex = existingProducts.findIndex(p => p.name === product.name);
+
+        if (existingProductIndex !== -1) {
+            // If product already exists, increase the quantity
+            existingProducts[existingProductIndex].quantity++;
+        } else {
+            // If not, add it to the products array
+            existingProducts.push(product);
+        }
+
+        // Save the updated products array to localStorage
+        localStorage.setItem("products", JSON.stringify(existingProducts));
+
+        // Display notification
+        showNotification("Item added to cart successfully!");
+    }
+
+    // Function to display notifications
+    function showNotification(message) {
+        var notification = document.getElementById("notification");
+        notification.innerText = message;
+        notification.style.display = "block";
+
+        // Hide notification after 3 seconds
+        setTimeout(function () {
+            notification.style.display = "none";
+        }, 3000);
+    }
+
+</script>
+<!-- JavaScript for sorting products -->
+<script>
+    document.getElementById('sortCriteria').addEventListener('change', function() {
+        var criteria = this.value;
+        var container = document.getElementById('productContainer');
+        var products = Array.from(container.getElementsByClassName('col-4'));
+
+        products.sort(function(a, b) {
+            if (criteria === 'default') return 0;
+            var aValue = parseFloat(a.getAttribute('data-' + criteria));
+            var bValue = parseFloat(b.getAttribute('data-' + criteria));
+            return aValue - bValue;
+        });
+
+        products.forEach(function(product) {
+            container.appendChild(product);
+        });
+    });
+</script>
+</body>
+</html>

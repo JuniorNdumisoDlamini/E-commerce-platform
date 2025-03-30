@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Payment Gateway || RedStore Ecom Website</title>
+  <link rel="stylesheet" href="payment.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;900&display=swap" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/7c10da4bc0.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="navbar">
+      <div class="logo">
+        <img src="images/logo.png" alt="logo image" width="125px">
+      </div>
+      <nav>
+        <ul id="MenuItems">
+          <li><a href="store.html">Home</a></li>
+          <li><a href="product.html">Products</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="account.html">Account</a></li>
+          <!-- Logout button added -->
+          <li><a href="javascript:void(0);" id="logoutBtn" onclick="handleLogout()">Logout</a></li>
+        </ul>
+      </nav>
+      <a href="cart.html"><img src="images/cart.png" alt="cart icon" width="30px" height="30px"></a>
+      <img src="images/menu.png" class="menu-icon" onclick="menutoggle()">
+    </div>
+  </div>
+  <div class="container">
+    <h1>Payment Gateway</h1>
+    
+    <!-- Product Summary Section -->
+    <div class="section product-summary">
+      <h2>Order Summary</h2>
+      <table id="productsTable">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Dynamically populated rows -->
+        </tbody>
+      </table>
+    </div>
+    
+    <!-- Shipping Details Section -->
+    <div class="section shipping-details">
+      <h2>Shipping Details</h2>
+      <form id="shippingForm">
+        <label for="fullName">Full Name</label>
+        <input type="text" id="fullName" placeholder="Your full name" required />
+
+        <label for="address">Address</label>
+        <input type="text" id="address" placeholder="Street address, Apartment, etc." required />
+
+        <label for="city">City</label>
+        <input type="text" id="city" placeholder="City" required />
+
+        <label for="state">State / Province</label>
+        <input type="text" id="state" placeholder="State or Province" required />
+
+        <label for="zip">ZIP / Postal Code</label>
+        <input type="text" id="zip" placeholder="ZIP / Postal Code" required />
+
+        <label for="country">Country</label>
+        <select id="country" required>
+          <option value="USA">South Africa</option>
+          <option value="USA">Cross Border</option>
+          <option value="International">International</option>
+        </select>
+        
+        <!-- Google Maps Embed (static placeholder based on address) -->
+        <h3>Locate on Map</h3>
+        <div class="map-container" id="mapContainer">
+          <!-- In production, replace with Google Maps API integration using your API key -->
+          <iframe 
+  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d28644.552884468503!2d27.89815073252086!3d-26.17815901995186!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e95a07c289d66d9%3A0xc3a916dfabec0647!2sFlorida%2C%20Roodepoort%2C%201710!5e0!3m2!1sen!2sza!4v1738430957307!5m2!1sen!2sza" 
+  width="100%" height="100%" frameborder="0" style="border:0;" allowfullscreen 
+  loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+</iframe>
+
+        </div>
+      </form>
+    </div>
+    
+    <!-- Payment Details Section -->
+    <div class="section payment-details">
+      <h2>Payment Details</h2>
+      <div class="payment-methods">
+        <label><input type="radio" name="paymentMethod" value="card" checked /> Credit / Debit Card</label>
+        <label><input type="radio" name="paymentMethod" value="paypal" /> PayPal</label>
+        <label><input type="radio" name="paymentMethod" value="eft" /> EFT</label>
+      </div>
+      <div id="cardDetails">
+        <label for="cardNumber">Card Number</label>
+        <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" />
+
+        <label for="cardExpiry">Expiry Date</label>
+        <input type="text" id="cardExpiry" placeholder="MM/YY" />
+
+        <label for="cardCVV">CVV</label>
+        <input type="text" id="cardCVV" placeholder="123" />
+      </div>
+      <div id="paypalDetails" style="display: none;">
+        <p>You will be redirected to PayPal after placing your order.</p>
+      </div>
+      <div id="eftDetails" style="display: none;">
+        <p>Please use the following bank details for EFT:</p>
+        <p>Bank: XYZ Bank<br>Account Number: 1234567890<br>Routing Number: 987654321</p>
+      </div>
+    </div>
+    
+    <!-- Discount and Order Totals Section -->
+    <!-- Discount and Order Totals Section -->
+<div class="section order-summary">
+    <h2>Order Totals</h2>
+    <form id="discountForm">
+      <label for="discountCode">Discount Code</label>
+      <input type="text" id="discountCode" placeholder="Enter discount code if any" />
+      <button type="button" onclick="applyDiscount()">Apply Discount</button>
+    </form>
+    <br>
+    
+    <!-- Currency Converter Section -->
+    <div class="currency-converter">
+      <label for="currency">Choose Currency:</label>
+      <select id="currency">
+        <option value="USD" data-rate="1" selected>USD</option>
+        <option value="EUR" data-rate="0.91">EUR</option>
+        <option value="GBP" data-rate="0.78">GBP</option>
+        <option value="ZAR" data-rate="18.0">ZAR</option>
+      </select>
+    </div>
+    
+    <table>
+      <tr>
+        <td>Subtotal</td>
+        <td id="subtotal">$0.00</td>
+      </tr>
+      <tr>
+        <td>Discount</td>
+        <td id="discountAmount">-$0.00</td>
+      </tr>
+      <tr>
+        <td>Shipping</td>
+        <td id="shippingFee">$0.00</td>
+      </tr>
+      <tr>
+        <td>Tax</td>
+        <td id="taxAmount">$0.00</td>
+      </tr>
+      <tr class="total-row">
+        <td>Total</td>
+        <td id="totalAmount">$0.00</td>
+      </tr>
+    </table>
+    <br>
+    <!-- Place Order Button -->
+    <button class="place-order-btn" onclick="placeOrder()">Place Order</button>
+  </div>
+  
+  
+  <!-- Footer section -->
+  <div class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="footer-col-1">
+          <h3>Download Our App</h3>
+          <p>Download App for Android and iOS for mobile.</p>
+          <div class="app-logo">
+            <img src="images/play-store.png" alt="play store logo">
+            <img src="images/app-store.png" alt="app store logo">
+          </div>
+        </div>
+        <div class="footer-col-2">
+          <img src="images/logo-white.png" alt="company logo">
+          <p>Our Purpose Is To Sustainably Make The Pleasure and Benefits of Sports Accessible to the Many.</p>
+        </div>
+        <div class="footer-col-3">
+          <h3>Useful Links</h3>
+          <ul>
+            <li>Coupons</li>
+            <li>Blog Post</li>
+            <li>Return Policy</li>
+            <li>Join Affiliate</li>
+          </ul>
+        </div>
+        <div class="footer-col-4">
+          <h3>Follow Us On:</h3>
+          <ul>
+            <li>FaceBook</li>
+            <li>Twitter</li>
+            <li>Instagram</li>
+            <li>YouTube</li>
+          </ul>
+        </div>
+      </div>
+      <hr>
+      <p class="copyright"> Copyright 2023- @Ndu studios </p>
+    </div>
+  </div>
+
+  <script>
+    // Sample discount code logic
+    const DISCOUNT_CODES = {
+      'SAVE10': 0.10,  // 10% discount
+      'SAVE20': 0.20 ,  // 20% discount
+      'SUCKMEBALLS': 0.33 ,// 50% discount
+      'FIRSTBUY': 0.25
+    };
+
+    // Retrieve products from localStorage
+    let products = JSON.parse(localStorage.getItem("products")) || [];
+
+    let discountPercent = 0; // Applied discount rate
+
+    // Calculate subtotal from products (in USD)
+    function calculateSubtotal() {
+      return products.reduce((sum, prod) => sum + prod.price * prod.quantity, 0);
+    }
+
+    // Calculate shipping fee based on country selection (in USD)
+    function calculateShippingFee() {
+      const country = document.getElementById('country').value;
+      // For demonstration: USA has $10 shipping fee; International is $20.
+      return country === 'USA' ? 10 : 20;
+    }
+
+    // Helper function to return a currency symbol
+    function getCurrencySymbol(currencyCode) {
+      switch(currencyCode) {
+        case "USD": return "$";
+        case "EUR": return "€";
+        case "GBP": return "£";
+        case "ZAR": return "R";
+        default: return "$";
+      }
+    }
+
+    // Update Order Summary Table using conversion rates and new tax logic
+    function updateOrderSummary() {
+      const subtotalUSD = calculateSubtotal();
+      const discountAmountUSD = subtotalUSD * discountPercent;
+      const shippingFeeUSD = calculateShippingFee();
+      
+      // Calculate tax based on country selection:
+      // Local (USA) tax is $7; International tax is $50.
+      const country = document.getElementById('country').value;
+      const taxUSD = country === 'USA' ? 7 : 50;
+      
+      // Total calculation includes tax now
+      const totalUSD = subtotalUSD - discountAmountUSD + shippingFeeUSD + taxUSD;
+
+      const currencySelect = document.getElementById('currency');
+      const selectedCurrency = currencySelect.value;
+      const conversionRate = parseFloat(currencySelect.selectedOptions[0].dataset.rate);
+      const currencySymbol = getCurrencySymbol(selectedCurrency);
+
+      const subtotal = subtotalUSD * conversionRate;
+      const discountAmount = discountAmountUSD * conversionRate;
+      const shippingFee = shippingFeeUSD * conversionRate;
+      const tax = taxUSD * conversionRate;
+      const total = totalUSD * conversionRate;
+
+      document.getElementById('subtotal').textContent = `${currencySymbol}${subtotal.toFixed(2)}`;
+      document.getElementById('discountAmount').textContent = `-${currencySymbol}${discountAmount.toFixed(2)}`;
+      document.getElementById('shippingFee').textContent = `${currencySymbol}${shippingFee.toFixed(2)}`;
+      document.getElementById('taxAmount').textContent = `${currencySymbol}${tax.toFixed(2)}`;
+      document.getElementById('totalAmount').textContent = `${currencySymbol}${total.toFixed(2)}`;
+    }
+
+    // Render the products in the summary table
+    function renderProducts() {
+      const tableBody = document.querySelector("#productsTable tbody");
+      tableBody.innerHTML = "";
+      products.forEach(prod => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>
+            <div class="cart-info">
+              <img src="${prod.image}" alt="Product Image" />
+              <span>${prod.name}</span>
+            </div>
+          </td>
+          <td>${prod.quantity}</td>
+          <td>$${(prod.price * prod.quantity).toFixed(2)}</td>
+        `;
+        tableBody.appendChild(row);
+      });
+    }
+
+    // Apply discount code
+    function applyDiscount() {
+      const code = document.getElementById('discountCode').value.trim().toUpperCase();
+      if (DISCOUNT_CODES[code]) {
+        discountPercent = DISCOUNT_CODES[code];
+        alert(`Discount code applied: ${code} (${discountPercent * 100}% off)`); 
+      } else {
+        discountPercent = 0;
+        alert("Invalid discount code");
+      }
+      updateOrderSummary();
+    }
+
+    // Update Google Maps embed based on address (for demo, this is static)
+    function updateMap() {
+      // In a production environment, use Google Maps Geocoding API to update the map
+      // For now, this is just a placeholder iframe.
+      const address = document.getElementById('address').value;
+      // Replace spaces with '+' for URL
+      const query = address.split(' ').join('+') || 'New+York';
+      const iframe = document.querySelector("#mapContainer iframe");
+      iframe.src = `https://www.google.com/maps/embed/v1/place?q=${query}&key=YOUR_GOOGLE_MAPS_API_KEY`;
+    }
+
+    // Listen for country changes to update shipping fee and tax
+    document.getElementById('country').addEventListener('change', updateOrderSummary);
+    // Listen for address changes to update map
+    document.getElementById('address').addEventListener('change', updateMap);
+    // Listen for currency changes to update prices
+    document.getElementById('currency').addEventListener('change', updateOrderSummary);
+
+    // Payment method toggle
+    const paymentRadios = document.getElementsByName('paymentMethod');
+    paymentRadios.forEach(radio => {
+      radio.addEventListener('change', function () {
+        if (this.value === 'card') {
+          document.getElementById('cardDetails').style.display = 'block';
+          document.getElementById('paypalDetails').style.display = 'none';
+          document.getElementById('eftDetails').style.display = 'none';
+        } else if (this.value === 'paypal') {
+          document.getElementById('cardDetails').style.display = 'none';
+          document.getElementById('paypalDetails').style.display = 'block';
+          document.getElementById('eftDetails').style.display = 'none';
+        } else if (this.value === 'eft') {
+          document.getElementById('cardDetails').style.display = 'none';
+          document.getElementById('paypalDetails').style.display = 'none';
+          document.getElementById('eftDetails').style.display = 'block';
+        }
+      });
+    });
+
+    // Place Order function
+    function placeOrder() {
+      // Validate shipping form
+      const shippingForm = document.getElementById('shippingForm');
+      if (!shippingForm.checkValidity()) {
+        alert("Please fill out all shipping details.");
+        return;
+      }
+      
+      // For demo purposes, we'll just log the order details.
+      const order = {
+        products: products,
+        shipping: {
+          fullName: document.getElementById('fullName').value,
+          address: document.getElementById('address').value,
+          city: document.getElementById('city').value,
+          state: document.getElementById('state').value,
+          zip: document.getElementById('zip').value,
+          country: document.getElementById('country').value,
+        },
+        paymentMethod: document.querySelector('input[name="paymentMethod"]:checked').value,
+        totalAmount: document.getElementById('totalAmount').textContent
+      };
+
+      console.log("Order Placed:", order);
+      alert("Your order has been placed successfully!");
+      // Here you can integrate with your backend or payment processor.
+      
+      // Optionally clear the cart from localStorage
+      localStorage.removeItem("products");
+      // Redirect to an order confirmation page
+      window.location.href = "order_confirmation.html";
+    }
+
+    // On page load, render products and update summary
+    window.onload = function() {
+      renderProducts();
+      updateOrderSummary();
+    };
+  </script>
+</body>
+</html>

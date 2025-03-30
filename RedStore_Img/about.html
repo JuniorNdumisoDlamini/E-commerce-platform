@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us - SportStyle Apparel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="about.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="navbar">
+            <div class="logo">
+                <img src="images/logo.png" alt="logo image" width="125px">
+            </div>
+            <nav>
+                <ul id="MenuItems">
+                    <li><a href="store.html">Home</a></li>
+                    <li><a href="product.html">Products</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="account.html">Account</a></li>
+                    <!-- Logout button added -->
+                    <li><a href="javascript:void(0);" id="logoutBtn" onclick="handleLogout()">Logout</a></li>
+                </ul>
+            </nav>
+            <a href="cart.html"><img src="images/cart.png" alt="cart icon" width="30px" height="30px"></a>
+            <img src="images/menu.png" class="menu-icon" onclick="menutoggle()">
+        </div>
+    </div>
+  
+  
+
+  <!-- Hero Section -->
+  <header id="hero" class="hero">
+    <div class="hero-content container">
+      <h1>SportStyle Apparel</h1>
+      <p>Elevate Your Game. Minimal. Modern. Performance-Driven.</p>
+    </div>
+  </header>
+
+  <div class="container">
+    <!-- Company History (Timeline) -->
+    <section id="journey" class="section timeline-section">
+      <h2 style="text-align:center; margin-bottom:25px; color: #85C1E9;">Our Journey</h2>
+      <div class="timeline-item">
+        <h3>2005</h3>
+        <p>Founded with a vision to redefine sportswear with clean designs and high performance.</p>
+      </div>
+      <div class="timeline-item">
+        <h3>2010</h3>
+        <p>Launched our signature gym collection blending sleek style with functionality.</p>
+      </div>
+      <div class="timeline-item">
+        <h3>2015</h3>
+        <p>Expanded globally, becoming a trusted name for athletes and fitness enthusiasts.</p>
+      </div>
+      <div class="timeline-item">
+        <h3>2020</h3>
+        <p>Committed to sustainability with eco-friendly fabrics and innovative production methods.</p>
+      </div>
+    </section>
+    
+    <!-- Mission Statement -->
+    <section id="mission" class="section mission">
+      <h2>Our Mission</h2>
+      <p>"To empower athletes and everyday fitness enthusiasts with sleek, modern apparel that fuses performance with minimalist design."</p>
+    </section>
+    
+    <!-- Team Section -->
+    <section id="team" class="section team-section">
+      <h2 style="text-align:center; margin-bottom:25px; color: #85C1E9;">Meet Our Team</h2>
+      <div class="team-grid">
+        <div class="team-member">
+          <div class="team-member-inner">
+            <div class="team-member-front">
+              <img src="images/user-3.png" alt="John Doe">
+              <div class="member-info">
+                <h3>John Doe</h3>
+                <p>Founder & CEO</p>
+              </div>
+            </div>
+            <div class="team-member-back">
+              <p>Leading with passion and precision, John drives our vision forward.</p>
+            </div>
+          </div>
+        </div>
+        <div class="team-member">
+          <div class="team-member-inner">
+            <div class="team-member-front">
+              <img src="images/user-1.png" alt="Jane Smith">
+              <div class="member-info">
+                <h3>Jane Smith</h3>
+                <p>Creative Director</p>
+              </div>
+            </div>
+            <div class="team-member-back">
+              <p>Jane infuses creativity and style into every design.</p>
+            </div>
+          </div>
+        </div>
+        <div class="team-member">
+          <div class="team-member-inner">
+            <div class="team-member-front">
+              <img src="images/user-2.png" alt="Mike Johnson">
+              <div class="member-info">
+                <h3>Mike Johnson</h3>
+                <p>Head of Design</p>
+              </div>
+            </div>
+            <div class="team-member-back">
+              <p>Mike’s innovative designs set new trends in sportswear.</p>
+            </div>
+          </div>
+        </div>
+        <div class="team-member">
+          <div class="team-member-inner">
+            <div class="team-member-front">
+              <img src="images/user-3.png" alt="Emily Davis">
+              <div class="member-info">
+                <h3>Emily Davis</h3>
+                <p>Marketing Manager</p>
+              </div>
+            </div>
+            <div class="team-member-back">
+              <p>Emily’s dynamic campaigns bring our brand to life.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Testimonials Carousel -->
+    <section id="testimonials" class="section testimonials">
+      <div class="testimonial-slide active">
+        <p>"SportStyle Apparel redefines gym wear with its minimalist design and superior performance. I feel unstoppable in their gear!"</p>
+        <span>- Alex R.</span>
+      </div>
+      <div class="testimonial-slide">
+        <p>"Clean, modern, and built for performance. SportStyle is my go-to for all my training needs."</p>
+        <span>- Samira L.</span>
+      </div>
+      <div class="testimonial-slide">
+        <p>"Their apparel perfectly balances style and functionality. Every piece is a statement of quality and innovation."</p>
+        <span>- Jordan P.</span>
+      </div>
+      <div class="testimonial-controls">
+        <button class="control-btn active" data-index="0"></button>
+        <button class="control-btn" data-index="1"></button>
+        <button class="control-btn" data-index="2"></button>
+      </div>
+    </section>
+    
+    <!-- Featured Collection (Cards Section) -->
+    <section id="featured" class="section featured-cards">
+      <h2>Featured Collection</h2>
+      <div class="cards-container">
+        <!-- Card 1 -->
+        <div class="card">
+          <p class="card-title">Gym T-Shirt</p>
+          <p class="small-desc">
+            High-performance fabric designed to wick away moisture, keeping you cool during intense workouts.
+          </p>
+          <div class="go-corner">
+            <div class="go-arrow">→</div>
+          </div>
+        </div>
+        <!-- Card 2 -->
+        <div class="card">
+          <p class="card-title">Sports Shorts</p>
+          <p class="small-desc">
+            Lightweight and breathable shorts that offer freedom of movement and superior comfort.
+          </p>
+          <div class="go-corner">
+            <div class="go-arrow">→</div>
+          </div>
+        </div>
+        <!-- Card 3 -->
+        <div class="card">
+          <p class="card-title">Running Shoes</p>
+          <p class="small-desc">
+            Engineered for maximum support and cushioning, these shoes are perfect for both training and competition.
+          </p>
+          <div class="go-corner">
+            <div class="go-arrow">→</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Awards Section -->
+    <section class="section awards">
+      <h2>Accolades</h2>
+      <div class="awards-list">
+        <div class="award">Best Sportswear 2020</div>
+        <div class="award">Innovation Award 2019</div>
+        <div class="award">Customer Choice 2018</div>
+      </div>
+    </section>
+    
+    <!-- Culture Section (Video Background) -->
+    <section id="culture" class="section culture">
+      <video autoplay muted loop>
+        <source src="https://www.w3schools.com/howto/rain.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      <div class="culture-content">
+        <h2>Our Culture</h2>
+        <p>Driven by passion, precision, and performance. Our culture is a blend of modern minimalism and relentless innovation.</p>
+      </div>
+    </section>
+    
+    <!-- Call-to-Action -->
+    <section id="cta" class="section cta">
+      <h2>Discover the Difference</h2>
+      <p>Step into the future of sportswear. Shop our collection or join our team.</p>
+      <button id="ctaBtn">Explore Now</button>
+    </section>
+  </div>
+
+  <!-- footer section -->
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="footer-col-1">
+                    <h3>Download Our App</h3>
+                    <p>Download App for Andriod and IOs for mobile.</p>
+                    <div class="app-logo">
+                        <img src="images/play-store.png" alt="play store logo">
+                        <img src="images/app-store.png" alt="app store logo">
+                    </div>
+                </div>
+                <div class="footer-col-2">
+                    <img src="images/logo-white.png" alt="company logo">
+                    <p>Our Purpose Is To Sustainably Make The Pleasure and Benefits of Sports Accessible to the Many.</p>
+                </div>
+                <div class="footer-col-3">
+                    <h3>Useful Links</h3>
+                    <ul>
+                        <li>Coupons</li>
+                        <li>Blog Post</li>
+                        <li>Return Policy</li>
+                        <li>Join Affiliate</li>
+                    </ul>
+                </div>
+                <div class="footer-col-4">
+                    <h3>Follow Us On:</h3>
+                    <ul>
+                        <li>FaceBook</li>
+                        <li>Twitter</li>
+                        <li>Instagram</li>
+                        <li>YouTube</li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            <p class="copyright"> Copyright 2023- @Ndu studios </p>
+        </div>
+    </div>
+
+  <script>
+    // IntersectionObserver to reveal sections on scroll
+    const sections = document.querySelectorAll('.section');
+    const observerOptions = {
+      threshold: 0.15
+    };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+    sections.forEach(section => observer.observe(section));
+
+    // Testimonials Carousel Functionality
+    document.addEventListener("DOMContentLoaded", function () {
+      const slides = document.querySelectorAll('.testimonial-slide');
+      const controls = document.querySelectorAll('.control-btn');
+      let currentSlide = 0;
+      const totalSlides = slides.length;
+      
+      function showSlide(index) {
+        slides.forEach((slide, i) => {
+          slide.classList.toggle('active', i === index);
+          controls[i].classList.toggle('active', i === index);
+        });
+      }
+      
+      controls.forEach(control => {
+        control.addEventListener('click', function () {
+          currentSlide = parseInt(this.dataset.index);
+          showSlide(currentSlide);
+        });
+      });
+      
+      setInterval(() => {
+        currentSlide = (currentSlide + 1) % totalSlides;
+        showSlide(currentSlide);
+      }, 5000);
+    });
+    
+    // CTA Button Action
+    document.getElementById('ctaBtn').addEventListener('click', function () {
+      alert('Navigating to our Shop & Careers page!');
+      window.location.href = 'shop.html'; // Change to your desired URL
+    });
+  </script>
+</body>
+</html>

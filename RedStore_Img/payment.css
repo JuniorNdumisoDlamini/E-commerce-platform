@@ -1,0 +1,197 @@
+/* ===== Global Styles (your provided global rules) ===== */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: radial-gradient(circle, #fff, #85C1E9);
+    margin: 0;
+    padding: 0;
+    color: #ddd;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 15px;
+  }
+  
+  h1 {
+    text-align: left;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .section {
+    background: #1f1f1f;
+    margin: 15px 0;
+    padding: 15px;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  }
+  
+  .section h2 {
+    color: #fff;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    text-align: left;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th,
+  td {
+    padding: 5px;
+    text-align: left;
+  }
+  
+  th {
+    background: #398dc6;
+    color: #fff;
+    font-weight: normal;
+  }
+  
+  td {
+    padding: 8px 5px;
+  }
+  
+  td img {
+    width: 80px;
+    height: 80px;
+    margin-right: 10px;
+  }
+  
+  .cart-info {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .total-price {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .total-price table {
+    border-top: 3px solid #398dc6;
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  td:last-child {
+    text-align: right;
+  }
+  
+  th:last-child {
+    text-align: right;
+  }
+  
+  input[type="text"],
+  select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #444;
+    border-radius: 4px;
+    background: #2a2a2a;
+    color: #eee;
+    box-sizing: border-box;
+  }
+  
+  button {
+    background-color: #398dc6;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #85C1E9;
+  }
+  
+  .map-container {
+    width: 100%;
+    height: 250px;
+    border: none;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    margin-top: 10px;
+  }
+  
+  .payment-methods {
+    margin-bottom: 12px;
+  }
+  
+  .payment-methods label {
+    position: relative;
+    display: inline-block;
+    margin-right: 15px;
+    padding-left: 25px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: #ccc;
+  }
+  
+  .payment-methods input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+  }
+  
+  .payment-methods label::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 2px;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #85C1E9;
+    border-radius: 50%;
+    background: transparent;
+    transition: background 0.2s ease;
+  }
+  
+  .payment-methods input[type="radio"]:checked + label::before {
+    background: #85C1E9;
+  }
+  
+  .payment-methods input[type="radio"]:checked + label::after {
+    content: "";
+    position: absolute;
+    left: 4px;
+    top: 6px;
+    width: 6px;
+    height: 6px;
+    background: #1f1f1f;
+    border-radius: 50%;
+  }
+  
+  #calculateButton {
+    align-items: flex-end;
+  }
+  .currency-converter {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px; /* Adjust spacing as needed */
+  }
+  
+  .currency-converter label {
+    margin-right: 10px;
+    font-size: 1rem;
+    color: #fff; /* Use a color that contrasts with the background */
+  }
+  
+  .currency-converter select {
+    width: auto; /* Let the select fit its content */
+    padding: 8px;
+    border: 1px solid #444;
+    border-radius: 4px;
+    background: #2a2a2a;
+    color: #eee;
+  }
+  
+  
